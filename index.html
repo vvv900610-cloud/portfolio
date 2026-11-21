@@ -35,7 +35,7 @@ var data={settings:{},projects:[]},active="All",slide=0,heroItems=[],timer;
 var categories=["All","Campaign Design","Social & Digital","Event & Print","Typography & Visual Exploration"];
 function el(id){return document.getElementById(id)}
 function safe(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
-function imageSrc(s){s=String(s||"").trim();return /^(https?:\/\/|\.?\.?\/|assets\/)/i.test(s)?s:""}
+function imageSrc(s){s=String(s||"").trim();return /^(https?:\/\/|\.?\.?\/|assets\/|data:image\/(?:jpeg|png|webp);base64,)/i.test(s)?s:""}
 function showHero(){var root=el("hero");if(!heroItems.length){root.innerHTML='<div class="hero-empty"><span class="kicker">01 / Portfolio</span><strong>Form, feeling<br>&amp; function.</strong><span class="kicker">Selected visual works</span></div>';return}var p=heroItems[slide%heroItems.length];root.innerHTML='<img alt="'+safe(p.title)+'" src="'+safe(imageSrc(p.cover))+'"><div class="hero-caption"><b>'+safe(p.title)+'</b><small>'+safe(p.brand)+' / '+String(slide%heroItems.length+1).padStart(2,"0")+' — '+String(heroItems.length).padStart(2,"0")+'</small></div>'}
 function render(){var p=data.projects||[];heroItems=p.filter(function(x){return x.hero&&imageSrc(x.cover)});slide=0;showHero();clearInterval(timer);if(heroItems.length>1&&data.settings.autoplay!==false){timer=setInterval(function(){slide++;showHero()},Number(data.settings.interval)||6000)}
 el("abouttext").textContent=data.settings.about||"Visual design across brands, formats and experiences.";var email=String(data.settings.email||"").trim();el("contact").href=email?"mailto:"+encodeURIComponent(email):"mailto:";el("contact").textContent=email||"Get in touch ↗";
