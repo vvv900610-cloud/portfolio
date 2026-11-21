@@ -1,9 +1,10 @@
 {
   "settings": {
-    "about": "Visual design across brands, formats and experiences.",
     "email": "",
     "autoplay": true,
-    "interval": 6000
+    "interval": 6000,
+    "aboutZh": "以跨品牌、跨媒材的視覺設計，探索形式與溝通的可能。",
+    "aboutEn": "Visual design across brands, formats and experiences."
   },
   "projects": []
 }
