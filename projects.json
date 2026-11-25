@@ -6,7 +6,7 @@
     "interval": 6000,
     "autoplay": true,
     "heroRatio": "16:9",
-    "heroFit": "contain",
+    "heroFit": "cover",
     "heroPosition": 50
   },
   "projects": [
