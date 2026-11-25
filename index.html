@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
+<script>if('scrollRestoration' in history)history.scrollRestoration='manual';if(location.hash)history.replaceState(history.state,'',location.pathname+location.search);</script>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f6f5f1">
 <meta name="description" content="Selected visual design works across campaign, digital, event and typography.">
@@ -53,7 +54,8 @@ function render(){heroItems=(data.projects||[]).filter(p=>p.hero&&(imageSrc(p.he
 
 el("close").addEventListener("click",()=>el("detail").close());el("detail").addEventListener("click",e=>{if(e.target===el("detail"))el("detail").close()});el("prev").addEventListener("click",()=>{if(heroItems.length){slide=(slide-1+heroItems.length)%heroItems.length;showHero()}});el("next").addEventListener("click",()=>{if(heroItems.length){slide++;showHero()}});
 el("year").textContent=new Date().getFullYear();document.querySelector(".footer a").href="#";
-fetch("./projects.json?v="+Date.now()).then(r=>{if(!r.ok)throw Error("missing");return r.json()}).then(d=>{if(d&&Array.isArray(d.projects)){data=d;render()}}).catch(()=>render());
+function initialTop(){window.scrollTo({top:0,left:0,behavior:"instant"})}initialTop();
+fetch("./projects.json?v="+Date.now()).then(r=>{if(!r.ok)throw Error("missing");return r.json()}).then(d=>{if(d&&Array.isArray(d.projects)){data=d;render()}}).catch(()=>render()).then(()=>{if(!location.hash)initialTop()});
 })();
 </script>
 </body></html>
